@@ -6,6 +6,9 @@ import { useGetCryptoNewsQuery } from "../services/cryptoNewsApi";
 const { Text, Title } = Typography;
 const { Option } = Select;
 
+const demoImageUrl =
+  "http://coinrevolution.com/wp-content/uploads/2020/06/crytonews.jpg";
+
 const News = ({ simplified }) => {
   const { data: cryptoNews } = useGetCryptoNewsQuery({
     newsCategory: "Cryptocurrency",
@@ -22,7 +25,16 @@ const News = ({ simplified }) => {
                 <Title className="news-title" level={4}>
                   {news.name}
                 </Title>
+                <img
+                  src={news?.image?.thumbnail?.contentUrl || demoImageUrl}
+                  alt="news"
+                />
               </div>
+              <p>
+                {news.description > 100
+                  ? `${news.description.substring(0, 100)} ...`
+                  : news.description}
+              </p>
             </a>
           </Card>
         </Col>
