@@ -35,6 +35,23 @@ const News = ({ simplified }) => {
                   ? `${news.description.substring(0, 100)} ...`
                   : news.description}
               </p>
+              <div className="provider-container">
+                <div>
+                  <Avatar
+                    src={
+                      news.provider[0]?.image?.thumbnail?.contentUrl ||
+                      demoImageUrl
+                    }
+                    alt="news"
+                  />
+                  <Text className="provider-name">
+                    {news.provider[0]?.name}
+                  </Text>
+                </div>
+                <Text>
+                  {moment(news.datePublished).startOf("ss").fromNow()}
+                </Text>
+              </div>
             </a>
           </Card>
         </Col>
